@@ -11,7 +11,7 @@ layui.use(['form','jquery','jquery_cookie'], function () {
             return false;
         }
         if ( data.password =="undefined" || data.password =="" || data.password.trim()=="")  {
-            layer.msg('用户密码不能为空');
+            layer.msg('密码不能为空');
             return false;
         }
         $.ajax({
@@ -24,7 +24,7 @@ layui.use(['form','jquery','jquery_cookie'], function () {
             dataType:"json",
             success:function (data) {
                 if(data.code==200){
-                    layer.msg('用户登录成功', function () {
+                    layer.msg('登录成功', function () {
                         var result =data.result;
                         $.cookie("userIdStr",result.userIdStr);
                         $.cookie("userName",result.userName);
