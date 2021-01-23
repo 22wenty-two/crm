@@ -15,7 +15,7 @@ layui.use(['form','jquery','jquery_cookie'], function () {
             return false;
         }
         $.ajax({
-            type:"post",
+            type:"get",
             url:ctx+"/user/login",
             data:{
                 userName:data.username,
