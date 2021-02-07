@@ -23,6 +23,18 @@ public class User {
     private Date createDate;
 
     private Date updateDate;
+    /**
+     * 角色id
+     */
+    private String roleIds;
+
+    public String getRoleIds() {
+        return roleIds;
+    }
+
+    public void setRoleIds(String roleIds) {
+        this.roleIds = roleIds;
+    }
 
     public Integer getId() {
         return id;

@@ -1,29 +1,28 @@
 package com.xxxx.crm.exceptions;
 
 /**
- * 自定义参数异常
- * @author NeXT
+ * 自定义认证异常
  */
-public class ParamsException extends RuntimeException {
-    private Integer code=300;
-    private String msg="参数异常!";
+public class AuthException extends RuntimeException {
+    private Integer code=400;
+    private String msg="暂无权限";
 
 
-    public ParamsException() {
-        super("参数异常!");
+    public AuthException() {
+        super("暂无权限!");
     }
 
-    public ParamsException(String msg) {
+    public AuthException(String msg) {
         super(msg);
         this.msg = msg;
     }
 
-    public ParamsException(Integer code) {
-        super("参数异常!");
+    public AuthException(Integer code) {
+        super("暂无权限!");
         this.code = code;
     }
 
-    public ParamsException(Integer code, String msg) {
+    public AuthException(Integer code, String msg) {
         super(msg);
         this.code = code;
         this.msg = msg;

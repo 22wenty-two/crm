@@ -6,16 +6,22 @@ package com.xxxx.crm.model;
  * @date 2021/1/23 9:53
  */
 public class UserModel {
-    private Integer userId;
+    /**
+     * userIdStr：用户id
+     * userName：用户名称
+     * trueName：用户真实名称
+     */
+    private String userIdStr;
     private String userName;
-    private String userPwd;
+    private String trueName;
 
-    public Integer getUserId() {
-        return userId;
+
+    public String getUserIdStr() {
+        return userIdStr;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setUserIdStr(String userIdStr) {
+        this.userIdStr = userIdStr;
     }
 
     public String getUserName() {
@@ -26,11 +32,11 @@ public class UserModel {
         this.userName = userName;
     }
 
-    public String getUserPwd() {
-        return userPwd;
+    public String getTrueName() {
+        return trueName;
     }
 
-    public void setUserPwd(String userPwd) {
-        this.userPwd = userPwd;
+    public void setTrueName(String trueName) {
+        this.trueName = trueName;
     }
 }

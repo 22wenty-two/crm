@@ -24,12 +24,69 @@
     where is_valid=1 and user_name=#{userName}
   </select>
 
+  <!--根据用户id查询用户信息-->
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from t_user
     where id = #{id,jdbcType=INTEGER}
   </select>
+
+  <!--查询分配人-->
+  <select id="queryAllSales" resultType="java.util.Map">
+    SELECT
+      u.id,
+      u.user_name AS uname
+    FROM
+      t_user u
+        LEFT JOIN t_user_role ur ON u.id = ur.user_id
+        LEFT JOIN t_role r ON ur.role_id = r.id
+    WHERE
+      u.is_valid = 1
+      AND r.is_valid = 1
+      AND r.role_name = "销售"
+  </select>
+
+  <!--客户管理：多条件查询-->
+  <select id="selectByParams" parameterType="com.xxxx.crm.query.UserQuery" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from t_user
+    where is_valid=1
+        <if test="null != userName and userName != ''">
+            and user_name like concat('%',#{userName},'%')
+        </if>
+        <if test="null !=email and email !=''">
+            and email=#{email}
+        </if>
+        <if test="null !=phone and phone !=''">
+            and phone =#{phone}
+        </if>
+  </select>
+
+  <!--服务创建-服务处理：客户经理-->
+  <select id="queryAllCustomerManager" resultType="java.util.Map">
+    SELECT
+      u.id,
+      u.user_name AS uname
+    FROM
+      t_user u
+        LEFT JOIN t_user_role ur ON u.id = ur.user_id
+        LEFT JOIN t_role r ON ur.role_id = r.id
+    WHERE
+      u.is_valid = 1
+      AND r.is_valid = 1
+      AND r.role_name = "客户经理"
+  </select>
+
+  <!--删除用户记录-->
+  <update id="deleteBatch" >
+    update t_user
+    set is_valid = 0
+    where id in
+    <foreach collection="array" open="(" separator="," close=")" item="item">
+      #{item}
+    </foreach>
+  </update>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from t_user
